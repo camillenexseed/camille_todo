@@ -12,10 +12,13 @@ document.getElementById('add').addEventListener('click',
   function(){
     // taskを代入
     const task = document.getElementById('task');
+    
     // タスクの値を配列dataに追加
     data.push(task.value);
+    
     // タスクを追加
     createDOM(task.value);
+
     //  dataをローカルストレージに保存
     dataUpdated();
 
@@ -34,9 +37,11 @@ for (const value of data) {
 function createDOM( value ){
   // liタグを作成
   let list = document.createElement('li');
+  
   // リストタグ内にvalueを格納
   list.textContent = value;
 
+  //ボタンタグ追加
   let button = document.createElement('button');
   button.textContent = '削除';
   list.appendChild(button);
