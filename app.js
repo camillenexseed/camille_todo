@@ -41,17 +41,22 @@ function createDOM( value ){
   button.textContent = '削除';
   list.appendChild(button);
 
-  button.addEventListener('click', function(){
-    this.parentNode.remove();
-    // クリックした文字列に該当する配列を削除
-    // 削除の文字が邪魔なのでelement.slice( 0, -2 ) 最後から二文字削除
-    // 配列を削除　splice
-    data.splice(data.indexOf(this.parentNode.textContent.slice( 0, -2 )), 1);
-    //データを再度保存
-    dataUpdated();
-  })
+  // 削除ボタン
+  button.addEventListener('click', remove )
+  
   // listの子要素として追加
   document.getElementById('list').appendChild(list);
+}
+
+// 削除ボタン
+function remove(){
+  this.parentNode.remove();
+  // クリックした文字列に該当する配列を削除
+  // 削除の文字が邪魔なのでelement.slice( 0, -2 ) 最後から二文字削除
+  // 配列を削除　splice
+  data.splice(data.indexOf(this.parentNode.textContent.slice( 0, -2 )), 1);
+  //データを再度保存
+  dataUpdated();
 }
 
 // ローカルストレージへ保存
