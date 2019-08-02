@@ -13,6 +13,7 @@ document.getElementById('add').addEventListener('click',
     data.push(document.getElementById('task').value);
     createDOM(document.getElementById('task').value);
     localStorage.setItem('task', JSON.stringify(data));
+    document.getElementById('task').value = "";
   }
 );
 
