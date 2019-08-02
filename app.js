@@ -10,10 +10,17 @@ if(localStorage.getItem('task')){
 // クリックイベント
 document.getElementById('add').addEventListener('click',
   function(){
-    data.push(document.getElementById('task').value);
-    createDOM(document.getElementById('task').value);
-    localStorage.setItem('task', JSON.stringify(data));
-    document.getElementById('task').value = "";
+    // taskを代入
+    const task = document.getElementById('task');
+    // タスクの値を配列dataに追加
+    data.push(task.value);
+    // タスクを追加
+    createDOM(task.value);
+    //  dataをローカルストレージに保存
+    dataUpdated();
+
+    //タスクのvalueを初期化
+    task.value = "";
   }
 );
 
@@ -41,8 +48,14 @@ function createDOM( value ){
     // 配列を削除　splice
     data.splice(data.indexOf(this.parentNode.textContent.slice( 0, -2 )), 1);
     //データを再度保存
-    localStorage.setItem('task', JSON.stringify(data));
+    dataUpdated();
   })
   // listの子要素として追加
   document.getElementById('list').appendChild(list);
 }
+
+// ローカルストレージへ保存
+function dataUpdated(){
+  localStorage.setItem('task', JSON.stringify(data));
+}
+
